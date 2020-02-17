@@ -1,8 +1,12 @@
-@import url("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Press+Start+2P|Rock+Salt&display=swap");
 
 html {
   background-color: #ed028c;
   color: #fff101;
   font-family: "Press Start 2P", cursive;
   text-align: center;
+}
+
+h1 {
+  font-family: "Rock Salt", cursive;
 }

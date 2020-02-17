@@ -7,7 +7,7 @@ export default function LoginForm(props) {
       Username
       <input
         type="text"
-        name="username"
+        name="userName"
         placeholder="username"
         values={props.values.userName}
         onChange={event => props.onChange(event)}

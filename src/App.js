@@ -11,7 +11,7 @@ import LoginScreenContainer from "./components/LoginScreenContainer";
 function App() {
   return (
     <Provider store={store}>
-      <h1>FAKE ARTIST</h1>
+      <h1>A FAKE ARTIST GOES TO NEW YORK</h1>
       <Route path="/router" exact component={Routecomponent} />
       <Route path="/" exact component={LoginScreenContainer} />
     </Provider>
