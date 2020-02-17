@@ -10,7 +10,9 @@ import LoginScreenContainer from "./components/Login/LoginScreenContainer";
 import SignupScreenContainer from "./components/Signup/SignupScreenContainer";
 
 class App extends React.Component {
-  stream = new EventSource("http://localhost:4000/stream");
+  stream = new EventSource(
+    "https://game-project-alex-brian-server.herokuapp.com/stream"
+  );
 
   componentDidMount() {
     this.stream.onmessage = event => {
