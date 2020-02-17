@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { login } from "../../store/user/action";
+import { Link } from "react-router-dom";
 
 import LoginForm from "./LoginForm";
 
@@ -29,7 +30,7 @@ export class LoginScreenContainer extends Component {
         />
 
         <p>
-          Don't have an account? Sign up <a href="/signup">here</a>
+          Don't have an account? <Link to="/signup">Sign up</Link>
         </p>
       </div>
     );

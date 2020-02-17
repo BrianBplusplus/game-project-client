@@ -3,7 +3,7 @@ import React from "react";
 export default function SignupForm(props) {
   return (
     <form onSubmit={event => props.onSubmit(event)}>
-      <p>Login</p>
+      <p>Create an account</p>
       Username
       <input
         type="text"
