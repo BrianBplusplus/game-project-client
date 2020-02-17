@@ -1,9 +1,10 @@
-const initialState = "";
-
-export default function reducer(state = initialState, action) {
+export default function(state = "", action = {}) {
   switch (action.type) {
-    default: {
-      return state;
+    case "LOG_IN": {
+      return action.payload;
     }
+
+    default:
+      return state;
   }
 }
