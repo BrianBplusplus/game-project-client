@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 
 import Routecomponent from "./components/Routecomponent";
-import LoginScreenContainer from "./components/LoginScreenContainer";
+import LoginScreenContainer from "./components/Login/LoginScreenContainer";
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { login } from "../store/user/action";
+import { login } from "../../store/user/action";
 
 import LoginForm from "./LoginForm";
 
@@ -27,6 +27,7 @@ export class LoginScreenContainer extends Component {
           onChange={this.onChange}
           values={this.state}
         />
+
         <p>
           Don't have an account? Sign up <a href="/router">here</a>
         </p>
