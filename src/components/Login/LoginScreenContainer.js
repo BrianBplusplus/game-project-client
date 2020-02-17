@@ -29,7 +29,7 @@ export class LoginScreenContainer extends Component {
         />
 
         <p>
-          Don't have an account? Sign up <a href="/router">here</a>
+          Don't have an account? Sign up <a href="/signup">here</a>
         </p>
       </div>
     );
