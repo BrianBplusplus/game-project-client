@@ -1,4 +1,4 @@
-import { ALL_ROOMS } from "./action";
+import { ALL_ROOMS, ONE_ROOM } from "./action";
 
 const initialState = [];
 
@@ -8,6 +8,9 @@ export default function(state = initialState, action = {}) {
       return action.payload;
     }
 
+    case ONE_ROOM: {
+      return [...state, action.payload];
+    }
     default:
       return state;
   }

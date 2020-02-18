@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Room from "./Room";
+import CreateRoomForm from "./CreateRoomForm";
 
 export class LobbyContainer extends Component {
   render() {
@@ -15,6 +16,8 @@ export class LobbyContainer extends Component {
           </p>
         )}
         {this.props.token && <p>Welcome to the game lobby</p>}
+
+        {this.props.token && <CreateRoomForm />}
 
         {this.props.rooms &&
           this.props.token &&
