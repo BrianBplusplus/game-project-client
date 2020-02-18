@@ -9,6 +9,7 @@ import { joinRoom } from "../../store/user/action";
 export class LobbyContainer extends Component {
   joinClick = roomId => {
     this.props.joinRoom(roomId);
+    this.props.history.push("/gamescreen");
   };
 
   displayRooms = rooms => {
