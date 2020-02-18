@@ -16,6 +16,7 @@ export class SignupScreenContainer extends Component {
       this.state.password
     );
     if (this.props.userCreated) {
+      this.props.history.push("/");
     } else {
       this.setState({ signupFailed: true });
     }
