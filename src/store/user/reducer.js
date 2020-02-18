@@ -1,4 +1,4 @@
-import { LOG_IN, SIGN_UP } from "./action";
+import { LOG_IN, SIGN_UP, JOIN_ROOM } from "./action";
 
 const initialState = {
   userCreated: false,
@@ -12,6 +12,10 @@ export default function(state = initialState, action = {}) {
     }
     case SIGN_UP: {
       return { ...state, userCreated: true };
+    }
+
+    case JOIN_ROOM: {
+      return state;
     }
 
     default:

@@ -1,7 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class Room extends Component {
-  render() {
-    return <p>{this.props.name}</p>;
-  }
+export default function Room(props) {
+  return (
+    <li>
+      {props.name} <br></br>
+      Ammount of player : 0<br></br>
+      <button onClick={() => props.joinClick(props.id)}>Join room</button>
+    </li>
+  );
 }

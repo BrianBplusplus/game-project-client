@@ -4,8 +4,13 @@ import { Link } from "react-router-dom";
 
 import Room from "./Room";
 import CreateRoomForm from "./CreateRoomForm";
+import { joinRoom } from "../../store/user/action";
 
 export class LobbyContainer extends Component {
+  joinClick = roomId => {
+    this.props.joinRoom(roomId);
+  };
+
   render() {
     console.log("this.props", this.props);
     return (
@@ -22,7 +27,14 @@ export class LobbyContainer extends Component {
         {this.props.rooms &&
           this.props.token &&
           this.props.rooms.map(room => {
-            return <Room key={room.id} name={room.name} />;
+            return (
+              <Room
+                key={room.id}
+                id={room.id}
+                name={room.name}
+                joinClick={this.joinClick}
+              />
+            );
           })}
       </div>
     );
@@ -34,5 +46,6 @@ const mapStateToProps = state => ({
   rooms: state.room
 });
 
-export default connect(mapStateToProps)(LobbyContainer);
-//
+const mapDispatchToProps = { joinRoom };
+
+export default connect(mapStateToProps, mapDispatchToProps)(LobbyContainer);
