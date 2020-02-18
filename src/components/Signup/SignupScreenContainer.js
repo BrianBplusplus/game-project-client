@@ -1,17 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { login } from "../../store/user/action";
 import { Link } from "react-router-dom";
+import { signUp } from "../../store/user/action";
 
 import SignupForm from "./SignupForm";
 
 export class SignupScreenContainer extends Component {
-  state = { userName: "", password: "" };
+  state = { userName: "", email: "", password: "" };
 
   onSubmit = event => {
     event.preventDefault();
-    this.props.login(this.state.userName, this.state.password);
-    console.log("onSubmit has been triggered");
+    this.props.signUp(
+      this.state.userName,
+      this.state.email,
+      this.state.password
+    );
+    if (this.props.userCreated) {
+      this.props.history.push("/lobby");
+    }
   };
 
   onChange = event => {
@@ -37,8 +43,11 @@ export class SignupScreenContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({ userCreated: state.user.userCreated });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { signUp };
 
-export default connect(mapStateToProps, { login })(SignupScreenContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignupScreenContainer);
