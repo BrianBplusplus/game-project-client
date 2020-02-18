@@ -20,11 +20,11 @@ export class LobbyContainer extends Component {
     };
   }
   render() {
-    return <div></div>;
+    return <div>{!this.props.token && "Login to access the game lobby"}</div>;
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({ token: state.user.token });
 
 const mapDispatchToProps = {};
 
