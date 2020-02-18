@@ -41,3 +41,10 @@ button:hover {
   border-style: solid;
   border-color: #fff101;
 }
+
+.roomItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}

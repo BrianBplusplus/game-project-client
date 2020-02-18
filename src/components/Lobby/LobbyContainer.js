@@ -11,31 +11,39 @@ export class LobbyContainer extends Component {
     this.props.joinRoom(roomId);
   };
 
+  displayRooms = rooms => {
+    return rooms.map(room => {
+      return (
+        <Room
+          key={room.id}
+          id={room.id}
+          name={room.name}
+          users={room.users.length}
+          joinClick={this.joinClick}
+        />
+      );
+    });
+  };
+
   render() {
-    console.log("this.props", this.props);
+    if (!this.props.token) {
+      return (
+        <p>
+          Login to access the game lobby <Link to="/">Return to login</Link>
+        </p>
+      );
+    }
+
     return (
       <div>
-        {!this.props.token && (
-          <p>
-            Login to access the game lobby <Link to="/">Return to login</Link>
-          </p>
-        )}
-        {this.props.token && <p>Welcome to the game lobby</p>}
-
-        {this.props.token && <CreateRoomForm />}
-
-        {this.props.rooms &&
-          this.props.token &&
-          this.props.rooms.map(room => {
-            return (
-              <Room
-                key={room.id}
-                id={room.id}
-                name={room.name}
-                joinClick={this.joinClick}
-              />
-            );
-          })}
+        <CreateRoomForm />
+        <p>Or join a game</p>
+        <div className="roomItem">
+          <div>Room</div>
+          <div>Join?</div>
+          <div>Players</div>
+        </div>
+        {this.props.rooms && this.displayRooms(this.props.rooms)}
       </div>
     );
   }

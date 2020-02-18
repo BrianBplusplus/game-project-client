@@ -54,7 +54,6 @@ const joinRoomSuccess = () => ({
 
 export const joinRoom = roomId => async (dispatch, getState) => {
   try {
-    console.log("user token", getState().user.token.token);
     const updatedUser = await axios.put(
       `${baseUrl}/room/join`,
       {
