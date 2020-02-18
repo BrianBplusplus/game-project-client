@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import LoginForm from "./LoginForm";
 
 export class LoginScreenContainer extends Component {
-  state = { userName: "", password: "" };
+  state = { userName: "", password: "", loginFailed: false };
 
   onSubmit = async event => {
     event.preventDefault();
@@ -14,9 +14,9 @@ export class LoginScreenContainer extends Component {
     const token = this.props.user.token;
     if (token) {
       this.props.history.push("/lobby");
+    } else {
+      this.setState({ loginFailed: true });
     }
-
-    // else display invalid credentials message
   };
 
   onChange = event => {
@@ -33,7 +33,9 @@ export class LoginScreenContainer extends Component {
           onChange={this.onChange}
           values={this.state}
         />
-
+        {this.state.loginFailed && (
+          <p>Login failed, please provide valid credentials.</p>
+        )}
         <p>
           Don't have an account? <Link to="/signup">Sign up</Link>
         </p>

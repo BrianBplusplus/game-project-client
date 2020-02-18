@@ -6,7 +6,7 @@ import { signUp } from "../../store/user/action";
 import SignupForm from "./SignupForm";
 
 export class SignupScreenContainer extends Component {
-  state = { userName: "", email: "", password: "" };
+  state = { userName: "", email: "", password: "", signupFailed: false };
 
   onSubmit = event => {
     event.preventDefault();
@@ -16,7 +16,8 @@ export class SignupScreenContainer extends Component {
       this.state.password
     );
     if (this.props.userCreated) {
-      this.props.history.push("/lobby");
+    } else {
+      this.setState({ signupFailed: true });
     }
   };
 
@@ -34,7 +35,9 @@ export class SignupScreenContainer extends Component {
           onChange={this.onChange}
           values={this.state}
         />
-
+        {this.state.signupFailed && (
+          <p>Signup failed. Please provide valid credentials</p>
+        )}
         <p>
           Already have an account? <Link to="/">Sign in</Link>
         </p>
