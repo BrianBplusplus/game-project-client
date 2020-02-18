@@ -4,26 +4,47 @@ import { Link } from "react-router-dom";
 
 import Room from "./Room";
 import CreateRoomForm from "./CreateRoomForm";
+import { joinRoom } from "../../store/user/action";
 
 export class LobbyContainer extends Component {
+  joinClick = roomId => {
+    this.props.joinRoom(roomId);
+    this.props.history.push("/gamescreen");
+  };
+
+  displayRooms = rooms => {
+    return rooms.map(room => {
+      return (
+        <Room
+          key={room.id}
+          id={room.id}
+          name={room.name}
+          users={room.users.length}
+          joinClick={this.joinClick}
+        />
+      );
+    });
+  };
+
   render() {
-    console.log("this.props", this.props);
+    if (!this.props.token) {
+      return (
+        <p>
+          Login to access the game lobby <Link to="/">Return to login</Link>
+        </p>
+      );
+    }
+
     return (
       <div>
-        {!this.props.token && (
-          <p>
-            Login to access the game lobby <Link to="/">Return to login</Link>
-          </p>
-        )}
-        {this.props.token && <p>Welcome to the game lobby</p>}
-
-        {this.props.token && <CreateRoomForm />}
-
-        {this.props.rooms &&
-          this.props.token &&
-          this.props.rooms.map(room => {
-            return <Room key={room.id} name={room.name} />;
-          })}
+        <CreateRoomForm />
+        <p>Or join a game</p>
+        <div className="roomItem">
+          <div>Room</div>
+          <div>Join?</div>
+          <div>Players</div>
+        </div>
+        {this.props.rooms && this.displayRooms(this.props.rooms)}
       </div>
     );
   }
@@ -34,5 +55,6 @@ const mapStateToProps = state => ({
   rooms: state.room
 });
 
-export default connect(mapStateToProps)(LobbyContainer);
-//
+const mapDispatchToProps = { joinRoom };
+
+export default connect(mapStateToProps, mapDispatchToProps)(LobbyContainer);
