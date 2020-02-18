@@ -20,7 +20,6 @@ export default function SignupForm(props) {
         values={props.values.email}
         onChange={event => props.onChange(event)}
       ></input>
-      <br></br>
       Password
       <input
         type="password"
