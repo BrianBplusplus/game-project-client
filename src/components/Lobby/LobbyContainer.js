@@ -15,15 +15,22 @@ export class LobbyContainer extends Component {
           </p>
         )}
 
-        <Room />
-
         {this.props.token && <p>Welcome to the game lobby</p>}
+
+        {this.props.rooms &&
+          this.props.token &&
+          this.props.rooms.map(room => {
+            return <Room key={room.id} name={room.name} />;
+          })}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({ token: state.user.token });
+const mapStateToProps = state => ({
+  token: state.user.token,
+  rooms: state.room
+});
 
 const mapDispatchToProps = {};
 
