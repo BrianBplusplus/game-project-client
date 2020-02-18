@@ -28,6 +28,7 @@ export class LoginScreenContainer extends Component {
   render() {
     return (
       <div>
+        {this.props.user.userCreated && <p>Signup successful, please login</p>}
         <LoginForm
           onSubmit={this.onSubmit}
           onChange={this.onChange}
@@ -45,7 +46,5 @@ export class LoginScreenContainer extends Component {
 }
 
 const mapStateToProps = state => ({ user: state.user });
-
-const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, { login })(LoginScreenContainer);
