@@ -1,9 +1,17 @@
-import { LOG_IN } from "./action";
+import { LOG_IN, SIGN_UP } from "./action";
 
-export default function(state = "", action = {}) {
+const initialState = {
+  userCreated: false,
+  token: null
+};
+
+export default function(state = initialState, action = {}) {
   switch (action.type) {
     case LOG_IN: {
-      return action.payload;
+      return { ...state, token: action.payload };
+    }
+    case SIGN_UP: {
+      return { ...state, userCreated: true };
     }
 
     default:
