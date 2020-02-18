@@ -1,15 +1,16 @@
-import { ALL_ROOMS } from "./action";
+import { ALL_ROOMS, ONE_ROOM } from "./action";
 
-const initialState = {
-  rooms: []
-};
+const initialState = [];
 
 export default function(state = initialState, action = {}) {
   switch (action.type) {
     case ALL_ROOMS: {
-      return { ...state, rooms: action.payload };
+      return action.payload;
     }
 
+    case ONE_ROOM: {
+      return [...state, action.payload];
+    }
     default:
       return state;
   }

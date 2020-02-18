@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Room from "./Room";
+import CreateRoomForm from "./CreateRoomForm";
 
 export class LobbyContainer extends Component {
   render() {
@@ -14,15 +15,24 @@ export class LobbyContainer extends Component {
             Login to access the game lobby <Link to="/">Return to login</Link>
           </p>
         )}
+        {this.props.token && <p>Welcome to the game lobby</p>}
 
-        <Room />
-        {/* 
-        {this.props.token && <p>Welcome to the game lobby</p>} */}
+        {this.props.token && <CreateRoomForm />}
+
+        {this.props.rooms &&
+          this.props.token &&
+          this.props.rooms.map(room => {
+            return <Room key={room.id} name={room.name} />;
+          })}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({ token: state.user.token });
+const mapStateToProps = state => ({
+  token: state.user.token,
+  rooms: state.room
+});
 
 export default connect(mapStateToProps)(LobbyContainer);
+//
