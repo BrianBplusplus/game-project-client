@@ -7,9 +7,12 @@ import GameScreen from "./GameScreen";
 import Bottombar from "./Bottombar";
 
 export class GameScreenContainer extends Component {
+  state = {};
+
   render() {
     return (
       <div>
+        <h2>Current room</h2>
         <div className="gamescreencontainer">
           <Chatroom />
           <GameScreen />

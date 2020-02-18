@@ -6,7 +6,7 @@ export default function Chatroom() {
       Chatroom
       <div className="chatroomcanvas">text goes here</div>
       <div className="chatbuttonandinput">
-        <input type="text"></input>
+        <input className="chatinput" type="text"></input>
         <button>send</button>
       </div>
     </div>
