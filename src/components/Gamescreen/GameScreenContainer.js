@@ -9,13 +9,11 @@ import Bottombar from "./Bottombar";
 export class GameScreenContainer extends Component {
   render() {
     const roomId = parseInt(this.props.match.params.roomId);
-    console.log("this.props.rooms", this.props.rooms);
     return (
       <div>
         {this.props.rooms &&
           this.props.rooms.map(room => {
             if (room.id === roomId) {
-              console.log("room", room);
               return (
                 <div key={room.id}>
                   <h2>{room.name}</h2>

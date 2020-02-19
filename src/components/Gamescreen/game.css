@@ -35,6 +35,7 @@
 }
 
 .chatinput {
+  flex-direction: row;
   width: 100%;
   border: solid;
   border-color: #ea498c;
