@@ -8,6 +8,7 @@ import LoginScreenContainer from "./components/Login/LoginScreenContainer";
 import SignupScreenContainer from "./components/Signup/SignupScreenContainer";
 import LobbyContainer from "./components/Lobby/LobbyContainer";
 import { GameScreenContainer } from "./components/Gamescreen/GameScreenContainer";
+import P5Container from "./components/p5/P5Container";
 
 class App extends React.Component {
   stream = new EventSource(
@@ -36,6 +37,7 @@ class App extends React.Component {
         <Route path="/signup" exact component={SignupScreenContainer} />
         <Route path="/gamescreen" exact component={GameScreenContainer} />
         <Route path="/" exact component={LoginScreenContainer} />
+        <Route path="/p5" exact component={P5Container} />
       </div>
     );
   }
