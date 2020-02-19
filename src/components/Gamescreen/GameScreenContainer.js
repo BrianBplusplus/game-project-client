@@ -15,19 +15,28 @@ export class GameScreenContainer extends Component {
         {this.props.rooms &&
           this.props.rooms.map(room => {
             if (room.id === roomId) {
+              console.log("room", room);
               return (
                 <div key={room.id}>
                   <h2>{room.name}</h2>
 
                   <ul>
                     Players:
-                    {room.users.map(user => {
-                      return <li>{user.userName}</li>;
-                    })}
+                    {room.users &&
+                      room.users.map((user, index) => {
+                        return <li key={index}>{user.userName}</li>;
+                      })}
                   </ul>
 
                   <div className="gamescreencontainer">
-                    <Chatroom />
+                    {
+                      <Chatroom
+                        chatmessage={room.messages.map(message => {
+                          return <li>{message.message}</li>;
+                        })}
+                      />
+                    }
+
                     <GameScreen />
                   </div>
                 </div>

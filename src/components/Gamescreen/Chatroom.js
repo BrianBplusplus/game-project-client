@@ -1,14 +1,16 @@
-import React from "react";
+import React, { Component } from "react";
 
-export default function Chatroom() {
-  return (
-    <div className="chatroom">
-      Chatroom
-      <div className="chatroomcanvas">text goes here</div>
-      <div className="chatbuttonandinput">
-        <input className="chatinput" type="text"></input>
-        <button>send</button>
+export default class Chatroom extends Component {
+  render() {
+    return (
+      <div className="chatroom">
+        Chatroom
+        <div className="chatroomcanvas">{this.props.chatmessage}</div>
+        <div className="chatbuttonandinput">
+          <input className="chatinput" type="text"></input>
+          <button>send</button>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }

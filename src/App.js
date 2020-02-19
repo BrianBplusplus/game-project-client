@@ -11,6 +11,7 @@ import GameScreenContainer from "./components/Gamescreen/GameScreenContainer";
 
 class App extends React.Component {
   stream = new EventSource(
+    //"http://localhost:4000/stream"
     "https://game-project-alex-brian-server.herokuapp.com/stream"
   );
 
