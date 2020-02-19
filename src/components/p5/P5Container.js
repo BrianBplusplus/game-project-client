@@ -12,13 +12,17 @@ import sketch from "./sketch.js";
 class P5Container extends Component {
   state = {};
 
+  sendData = data => {
+    console.log(data);
+  };
+
   render() {
     return (
       <div>
         <h2>Current room</h2>
-        <div className="gamescreencontainer">
+        <div className="p5">
           {/* <Chatroom /> */}
-          <P5Wrapper sketch={sketch} />
+          <P5Wrapper sketch={sketch} sendData={this.sendData} />
         </div>
         <Bottombar />
       </div>
