@@ -16,7 +16,15 @@ export default function(state = initialState, action = {}) {
 
     case JOIN_ROOM: {
       return state.map(room => {
-        return room.id === action.payload.id ? action.payload : room;
+        // console.log("room.id", room.id);
+        // console.log("action.payload.id", action.payload.id);
+        //return room.id === action.payload.id ? action.payload : room;
+
+        if (room.id === action.payload.id) {
+          return action.payload;
+        } else {
+          return room;
+        }
       });
     }
 
