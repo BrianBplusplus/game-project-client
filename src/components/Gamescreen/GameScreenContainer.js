@@ -7,12 +7,19 @@ import GameScreen from "./GameScreen";
 import Bottombar from "./Bottombar";
 
 export class GameScreenContainer extends Component {
-  state = {};
-
   render() {
+    const roomId = parseInt(this.props.match.params.roomId);
+
     return (
       <div>
-        <h2>Current room</h2>
+        <h2>
+          {this.props.rooms &&
+            this.props.rooms.map(room => {
+              if (room.id === roomId) {
+                return <p>{room.name}</p>;
+              }
+            })}
+        </h2>
         <div className="gamescreencontainer">
           <Chatroom />
           <GameScreen />
@@ -23,7 +30,7 @@ export class GameScreenContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({ rooms: state.room });
 
 const mapDispatchToProps = {};
 
