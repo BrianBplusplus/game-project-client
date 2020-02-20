@@ -54,8 +54,7 @@ export class GameScreenContainer extends Component {
     const mouseData = [];
 
     p.mouseReleased = async () => {
-
-    const request = await axios.post(
+      const request = await axios.post(
         `${baseUrl}/drawing`,
         {
           data: mouseData,
@@ -84,7 +83,7 @@ export class GameScreenContainer extends Component {
         players &&
         players.map((player, index) => {
           return (
-            <div className="userList" key={index}>
+            <div className="player" key={index}>
               {player.userName}
             </div>
           );

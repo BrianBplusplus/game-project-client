@@ -8,13 +8,19 @@ import SignupForm from "./SignupForm";
 export class SignupScreenContainer extends Component {
   state = { userName: "", email: "", password: "", signupFailed: false };
 
-  onSubmit = event => {
+  onSubmit = async event => {
     event.preventDefault();
-    this.props.signUp(
-      this.state.userName,
-      this.state.email,
-      this.state.password
-    );
+
+    try {
+      await this.props.signUp(
+        this.state.userName,
+        this.state.email,
+        this.state.password
+      );
+    } catch (error) {
+      console.error(error);
+    }
+
     if (this.props.userCreated) {
       this.props.history.push("/");
     } else {

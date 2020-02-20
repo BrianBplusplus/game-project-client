@@ -13,6 +13,10 @@
   min-height: 70vmin;
 }
 
+.bottomBar {
+  margin: 20px;
+}
+
 .chatroom {
   border: solid 3px;
   background-color: #fff;
@@ -23,6 +27,8 @@
 
   width: 350px;
   height: 500px;
+
+  overflow: hidden;
 }
 
 .chatroomcanvas {
@@ -35,8 +41,9 @@
   display: flex;
 }
 
-.chatinput {
+.chatInput {
   flex-direction: row;
+  justify-content: space-between;
   width: 100%;
   border: solid;
   border-color: #ea498c;
@@ -49,4 +56,15 @@
 
 .message {
   text-align: left;
+}
+
+.players {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.player {
+  margin: 20px;
 }
