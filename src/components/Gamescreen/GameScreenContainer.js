@@ -3,13 +3,23 @@ import { connect } from "react-redux";
 
 import "./game.css";
 import Chatroom from "./Chatroom";
-import GameScreen from "./GameScreen";
 import Bottombar from "./Bottombar";
 import axios from "axios";
 import P5Wrapper from "react-p5-wrapper";
 
 export class GameScreenContainer extends Component {
-  roomId = parseInt(this.props.match.params.roomId);
+  state = {
+    color: [Math.random() * 255, Math.random() * 255, Math.random() * 255],
+    roomId: parseInt(this.props.match.params.roomId)
+  };
+
+  randomColor = this.randomColor.bind(this);
+
+  randomColor() {
+    this.setState({
+      color: [Math.random() * 255, Math.random() * 255, Math.random() * 255]
+    });
+  }
 
   sketch = p => {
     let canvas;
@@ -20,19 +30,19 @@ export class GameScreenContainer extends Component {
     };
 
     p.myCustomRedrawAccordingToNewPropsHandler = props => {
-      console.log(props.roomInfo.drawingLines);
       const allLines = props.roomInfo.drawingLines;
+
       if (allLines && allLines.length) {
         allLines.map(line => line.data.map(valuePair => newDrawing(valuePair)));
       }
     };
 
     p.mouseDragged = () => {
-      p.fill(51, 255, 177);
-      p.noStroke();
-      p.square(p.mouseX, p.mouseY, 10);
-
-      let data = [p.mouseX, p.mouseY];
+      p.line(p.mouseX, p.mouseY, p.pmouseX, p.pmouseY);
+      p.stroke(this.state.color);
+      p.strokeWeight(8);
+      p.smooth();
+      let data = [p.mouseX, p.mouseY, p.pmouseX, p.pmouseY];
 
       mouseData.push(data);
     };
@@ -41,13 +51,22 @@ export class GameScreenContainer extends Component {
 
     p.mouseReleased = async () => {
       const url = `https://game-project-alex-brian-server.herokuapp.com/drawing`;
-      await axios.post(url, { data: mouseData, roomId: this.roomId });
+      await axios.post(
+        url,
+        {
+          data: mouseData,
+          roomId: this.state.roomId,
+          color: this.color
+        },
+        { headers: { Authorization: `Bearer ${this.props.token}` } }
+      );
     };
 
     const newDrawing = data => {
-      p.noStroke();
-      p.fill(51, 255, 177);
-      p.square(data[0], data[1], 10);
+      p.stroke(51, 255, 177);
+      p.strokeWeight(8);
+      p.smooth();
+      p.line(data[0], data[1], data[2], data[3]);
     };
   };
 
@@ -56,7 +75,7 @@ export class GameScreenContainer extends Component {
       <div>
         {this.props.rooms &&
           this.props.rooms.map(room => {
-            if (room.id === this.roomId) {
+            if (room.id === this.state.roomId) {
               return (
                 <div key={room.id}>
                   <h2>{room.name}</h2>
@@ -81,7 +100,7 @@ export class GameScreenContainer extends Component {
                     <P5Wrapper
                       sketch={this.sketch}
                       roomInfo={this.props.rooms.find(
-                        room => room.id === this.roomId
+                        room => room.id === this.state.roomId
                       )}
                     />
                   </div>
@@ -96,7 +115,10 @@ export class GameScreenContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({ rooms: state.room });
+const mapStateToProps = state => ({
+  rooms: state.room,
+  token: state.user.token
+});
 
 const mapDispatchToProps = {};
 

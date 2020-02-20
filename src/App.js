@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import LoginScreenContainer from "./components/Login/LoginScreenContainer";
@@ -15,6 +15,11 @@ class App extends React.Component {
     // "http://localhost:4000/stream"
     "https://game-project-alex-brian-server.herokuapp.com/stream"
   );
+
+  protectedRoutes = (Component, routerProps) => {
+    const { jwt } = this.props;
+    return jwt ? <Component {...routerProps} /> : <Redirect to="/" />;
+  };
 
   componentDidMount() {
     this.stream.onmessage = event => {
@@ -34,21 +39,28 @@ class App extends React.Component {
     return (
       <div>
         <h1>A FAKE ARTIST GOES TO NEW YORK</h1>
-        <Route path="/lobby" exact component={LobbyContainer} />
         <Route path="/signup" exact component={SignupScreenContainer} />
+        <Route
+          path="/lobby"
+          exact
+          render={routerProps =>
+            this.protectedRoutes(LobbyContainer, routerProps)
+          }
+        />
         <Route
           path="/gamescreen/:roomId"
           exact
-          component={GameScreenContainer}
+          render={routerProps =>
+            this.protectedRoutes(GameScreenContainer, routerProps)
+          }
         />
         <Route path="/" exact component={LoginScreenContainer} />
-        <Route path="/p5" exact component={P5Container} />
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({ jwt: state.user.token });
 
 const mapDispatchToProps = {};
 
