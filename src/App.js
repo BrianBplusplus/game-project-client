@@ -7,13 +7,12 @@ import { connect } from "react-redux";
 import LoginScreenContainer from "./components/Login/LoginScreenContainer";
 import SignupScreenContainer from "./components/Signup/SignupScreenContainer";
 import LobbyContainer from "./components/Lobby/LobbyContainer";
-import P5Container from "./components/p5/P5Container";
 import GameScreenContainer from "./components/Gamescreen/GameScreenContainer";
 
 class App extends React.Component {
   stream = new EventSource(
-    // "http://localhost:4000/stream"
-    "https://game-project-alex-brian-server.herokuapp.com/stream"
+    "http://localhost:4000/stream"
+    // "https://game-project-alex-brian-server.herokuapp.com/stream"
   );
 
   protectedRoutes = (Component, routerProps) => {
