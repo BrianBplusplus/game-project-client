@@ -1,9 +1,7 @@
 .gamescreencontainer {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  margin-left: 1%;
-  margin-right: 1%;
+  justify-content: space-evenly;
 }
 
 .gamescreen {
@@ -23,10 +21,9 @@
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 
-  width: 350px;
-  height: 500px;
+  width: 25%;
+  min-height: 70vmin;
 
   overflow: hidden;
 }
@@ -67,4 +64,18 @@
 
 .player {
   margin: 20px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .gamescreencontainer {
+    flex-direction: column-reverse;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  .chatroom {
+    width: 100%;
+    margin-top: 1rem;
+    justify-content: space-between;
+  }
 }

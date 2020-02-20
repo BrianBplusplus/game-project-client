@@ -42,11 +42,6 @@ export class LobbyContainer extends Component {
           <p>Or join a game!</p>
         </div>
         <div className="roomList">
-          <div className="roomItem">
-            <div>Room</div>
-            <div>Join?</div>
-            <div>Players</div>
-          </div>
           {this.props.rooms && this.displayRooms(this.props.rooms)}
         </div>
       </div>

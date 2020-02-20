@@ -48,8 +48,17 @@ button:hover {
 
 .roomItem {
   display: flex;
-  flex-direction: row;
-  flex: 0 0 230px;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+  height: 3.5rem;
+}
+
+.roomItemDetail {
+  width: 25%;
+}
+
+.createRoom {
+  border: solid;
+  width: 40%;
+  margin: auto;
 }

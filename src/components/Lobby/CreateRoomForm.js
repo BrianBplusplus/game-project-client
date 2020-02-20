@@ -25,11 +25,11 @@ export default class CreateRoomForm extends Component {
         <input
           type="text"
           name="room"
-          placeholder="room"
+          placeholder="room name"
           values={this.state.room}
           onChange={event => this.onChange(event)}
         ></input>
-        <button type="submit">Submit</button>
+        <button type="submit">Create</button>
       </form>
     );
   }
