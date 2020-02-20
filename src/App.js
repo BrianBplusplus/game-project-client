@@ -7,7 +7,9 @@ import { connect } from "react-redux";
 import LoginScreenContainer from "./components/Login/LoginScreenContainer";
 import SignupScreenContainer from "./components/Signup/SignupScreenContainer";
 import LobbyContainer from "./components/Lobby/LobbyContainer";
+import P5Container from "./components/p5/P5Container";
 import GameScreenContainer from "./components/Gamescreen/GameScreenContainer";
+
 
 class App extends React.Component {
   stream = new EventSource(
@@ -41,6 +43,7 @@ class App extends React.Component {
           component={GameScreenContainer}
         />
         <Route path="/" exact component={LoginScreenContainer} />
+        <Route path="/p5" exact component={P5Container} />
       </div>
     );
   }
