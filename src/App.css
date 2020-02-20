@@ -42,9 +42,23 @@ button:hover {
   border-color: #fff101;
 }
 
+.roomList {
+  padding-top: 30px;
+}
+
 .roomItem {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+  height: 3.5rem;
+}
+
+.roomItemDetail {
+  width: 25%;
+}
+
+.createRoom {
+  border: solid;
+  width: 40%;
+  margin: auto;
 }

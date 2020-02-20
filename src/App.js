@@ -7,14 +7,13 @@ import { connect } from "react-redux";
 import LoginScreenContainer from "./components/Login/LoginScreenContainer";
 import SignupScreenContainer from "./components/Signup/SignupScreenContainer";
 import LobbyContainer from "./components/Lobby/LobbyContainer";
-import P5Container from "./components/p5/P5Container";
 import GameScreenContainer from "./components/Gamescreen/GameScreenContainer";
 
+export const baseUrl = "https://game-project-alex-brian-server.herokuapp.com";
+// export const baseUrl = "http://localhost:4000";
+
 class App extends React.Component {
-  stream = new EventSource(
-    // "http://localhost:4000/stream"
-    "https://game-project-alex-brian-server.herokuapp.com/stream"
-  );
+  stream = new EventSource(`${baseUrl}/stream`);
 
   protectedRoutes = (Component, routerProps) => {
     const { jwt } = this.props;
@@ -38,7 +37,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>A FAKE ARTIST GOES TO NEW YORK</h1>
+        <h1>FAKE ARTIST</h1>
         <Route path="/signup" exact component={SignupScreenContainer} />
         <Route
           path="/lobby"

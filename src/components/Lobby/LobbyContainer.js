@@ -37,14 +37,13 @@ export class LobbyContainer extends Component {
 
     return (
       <div>
-        <CreateRoomForm />
-        <p>Or join a game</p>
-        <div className="roomItem">
-          <div>Room</div>
-          <div>Join?</div>
-          <div>Players</div>
+        <div className="createRoom">
+          <CreateRoomForm />
+          <p>Or join a game!</p>
         </div>
-        {this.props.rooms && this.displayRooms(this.props.rooms)}
+        <div className="roomList">
+          {this.props.rooms && this.displayRooms(this.props.rooms)}
+        </div>
       </div>
     );
   }

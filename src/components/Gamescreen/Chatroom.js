@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { baseUrl } from "../../App";
 
 export default class Chatroom extends Component {
   state = {
@@ -8,13 +9,17 @@ export default class Chatroom extends Component {
 
   onSubmit = async event => {
     event.preventDefault();
-    const url = `https://game-project-alex-brian-server.herokuapp.com/message`;
-    //const url = `http://localhost:4000/message`;
 
-    await axios.post(url, {
-      message: this.state.message,
-      roomId: this.props.id
-    });
+    try {
+      await axios.post(`${baseUrl}/message`, {
+        message: this.state.message,
+        roomId: this.props.id
+      });
+    } catch (error) {
+      console.error(error);
+    }
+
+    this.setState({ message: "" });
   };
 
   onChange = event => {
@@ -29,26 +34,18 @@ export default class Chatroom extends Component {
         Chatroom
         <div className="chatroomcanvas">{this.props.chatmessage}</div>
         <div className="chatbuttonandinput">
-          <form className="chatinput" onSubmit={event => this.onSubmit(event)}>
+          <form className="chatInput" onSubmit={event => this.onSubmit(event)}>
             <input
               type="text"
               name="message"
               placeholder="message"
-              values={this.state.message}
+              value={this.state.message}
               onChange={event => this.onChange(event)}
             ></input>
             <button className="sendMessage" type="submit">
               Submit
             </button>
           </form>
-
-          {/*    <input className="chatinput" type="text"></input>
-          <button
-            className="sendMessage"
-            onClick={() => this.props.sendMessage(this.props.id)}
-          >
-            send
-          </button> */}
         </div>
       </div>
     );

@@ -37,9 +37,12 @@ export class LoginScreenContainer extends Component {
         {this.state.loginFailed && (
           <p>Login failed, please provide valid credentials.</p>
         )}
-        <p>
-          Don't have an account? <Link to="/signup">Sign up</Link>
-        </p>
+
+        {!this.props.user.userCreated && (
+          <p>
+            Don't have an account? <Link to="/signup">Sign up</Link>
+          </p>
+        )}
       </div>
     );
   }

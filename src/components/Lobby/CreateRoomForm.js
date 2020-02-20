@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { baseUrl } from "../../App";
 
 export default class CreateRoomForm extends Component {
   state = {
@@ -8,9 +9,7 @@ export default class CreateRoomForm extends Component {
 
   onSubmit = async event => {
     event.preventDefault();
-    const url = `https://game-project-alex-brian-server.herokuapp.com/room`;
-
-    await axios.post(url, { name: this.state.room });
+    await axios.post(`${baseUrl}/room`, { name: this.state.room });
   };
 
   onChange = event => {
@@ -22,15 +21,15 @@ export default class CreateRoomForm extends Component {
   render() {
     return (
       <form onSubmit={event => this.onSubmit(event)}>
-        <p>Create Room</p>
+        <p>Create a Room...</p>
         <input
           type="text"
           name="room"
-          placeholder="room"
+          placeholder="room name"
           values={this.state.room}
           onChange={event => this.onChange(event)}
         ></input>
-        <button type="submit">Submit</button>
+        <button type="submit">Create</button>
       </form>
     );
   }
