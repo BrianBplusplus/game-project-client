@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { baseUrl } from "../../App";
 
 export default class Chatroom extends Component {
   state = {
@@ -8,10 +9,8 @@ export default class Chatroom extends Component {
 
   onSubmit = async event => {
     event.preventDefault();
-    const url = `https://game-project-alex-brian-server.herokuapp.com/message`;
-    //const url = `http://localhost:4000/message`;
 
-    await axios.post(url, {
+    await axios.post(`${baseUrl}/message`, {
       message: this.state.message,
       roomId: this.props.id
     });
