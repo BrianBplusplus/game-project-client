@@ -65,6 +65,7 @@ export class GameScreenContainer extends Component {
         { headers: { Authorization: `Bearer ${this.props.token}` } }
       );
     };
+
     const newDrawing = (data, color) => {
       p.stroke(color[0], color[1], color[2]);
       p.strokeWeight(8);
@@ -103,15 +104,21 @@ export class GameScreenContainer extends Component {
           <Chatroom
             id={room.id}
             chatmessage={room.messages.map((message, index) => {
-              return <li key={index}>{message.message}</li>;
+              return (
+                <div className="message" key={index}>
+                  {message.message}
+                </div>
+              );
             })}
           />
-          <P5Wrapper
-            sketch={this.sketch}
-            roomInfo={this.props.rooms.find(
-              room => room.id === this.state.roomId
-            )}
-          />
+          <div className="canvas">
+            <P5Wrapper
+              sketch={this.sketch}
+              roomInfo={this.props.rooms.find(
+                room => room.id === this.state.roomId
+              )}
+            />
+          </div>
         </div>
 
         <Bottombar />
