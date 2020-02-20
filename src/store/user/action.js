@@ -1,8 +1,5 @@
 import axios from "axios";
-
-const baseUrl =
-  // "https://game-project-alex-brian-server.herokuapp.com" ||
-  "http://localhost:4000";
+import { baseUrl } from "../../App";
 
 export const LOG_IN = "LOG_IN";
 export const SIGN_UP = "SIGN_UP";

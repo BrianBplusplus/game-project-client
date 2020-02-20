@@ -9,11 +9,12 @@ import SignupScreenContainer from "./components/Signup/SignupScreenContainer";
 import LobbyContainer from "./components/Lobby/LobbyContainer";
 import GameScreenContainer from "./components/Gamescreen/GameScreenContainer";
 
+export const baseUrl = "https://game-project-alex-brian-server.herokuapp.com";
+// const baseURL = "http://localhost:4000";
+
 class App extends React.Component {
-  stream = new EventSource(
-    "http://localhost:4000/stream"
-    // "https://game-project-alex-brian-server.herokuapp.com/stream"
-  );
+
+  stream = new EventSource(`${baseUrl}/stream`);
 
   protectedRoutes = (Component, routerProps) => {
     const { jwt } = this.props;

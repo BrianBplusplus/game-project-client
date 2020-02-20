@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { baseUrl } from "../../App";
 
 import "./game.css";
 import Chatroom from "./Chatroom";
@@ -53,10 +54,9 @@ export class GameScreenContainer extends Component {
     const mouseData = [];
 
     p.mouseReleased = async () => {
-      // const url = `https://game-project-alex-brian-server.herokuapp.com/drawing`;
-      const url = "http://localhost:4000/drawing";
-      const request = await axios.post(
-        url,
+
+    const request = await axios.post(
+        `${baseUrl}/drawing`,
         {
           data: mouseData,
           roomId: this.state.roomId,
