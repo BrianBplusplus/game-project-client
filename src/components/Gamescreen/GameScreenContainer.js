@@ -7,23 +7,48 @@ import GameScreen from "./GameScreen";
 import Bottombar from "./Bottombar";
 
 export class GameScreenContainer extends Component {
-  state = {};
-
   render() {
+    const roomId = parseInt(this.props.match.params.roomId);
     return (
       <div>
-        <h2>Current room</h2>
-        <div className="gamescreencontainer">
-          <Chatroom />
-          <GameScreen />
-        </div>
+        {this.props.rooms &&
+          this.props.rooms.map(room => {
+            if (room.id === roomId) {
+              return (
+                <div key={room.id}>
+                  <h2>{room.name}</h2>
+
+                  <ul>
+                    Players:
+                    {room.users &&
+                      room.users.map((user, index) => {
+                        return <li key={index}>{user.userName}</li>;
+                      })}
+                  </ul>
+
+                  <div className="gamescreencontainer">
+                    {
+                      <Chatroom
+                        chatmessage={room.messages.map(message => {
+                          return <li>{message.message}</li>;
+                        })}
+                      />
+                    }
+
+                    <GameScreen />
+                  </div>
+                </div>
+              );
+            }
+          })}
+
         <Bottombar />
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({ rooms: state.room });
 
 const mapDispatchToProps = {};
 

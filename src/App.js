@@ -7,11 +7,13 @@ import { connect } from "react-redux";
 import LoginScreenContainer from "./components/Login/LoginScreenContainer";
 import SignupScreenContainer from "./components/Signup/SignupScreenContainer";
 import LobbyContainer from "./components/Lobby/LobbyContainer";
-import { GameScreenContainer } from "./components/Gamescreen/GameScreenContainer";
 import P5Container from "./components/p5/P5Container";
+import GameScreenContainer from "./components/Gamescreen/GameScreenContainer";
+
 
 class App extends React.Component {
   stream = new EventSource(
+    //"http://localhost:4000/stream"
     "https://game-project-alex-brian-server.herokuapp.com/stream"
   );
 
@@ -35,7 +37,11 @@ class App extends React.Component {
         <h1>A FAKE ARTIST GOES TO NEW YORK</h1>
         <Route path="/lobby" exact component={LobbyContainer} />
         <Route path="/signup" exact component={SignupScreenContainer} />
-        <Route path="/gamescreen" exact component={GameScreenContainer} />
+        <Route
+          path="/gamescreen/:roomId"
+          exact
+          component={GameScreenContainer}
+        />
         <Route path="/" exact component={LoginScreenContainer} />
         <Route path="/p5" exact component={P5Container} />
       </div>
