@@ -29,8 +29,9 @@ export class GameScreenContainer extends Component {
                   <div className="gamescreencontainer">
                     {
                       <Chatroom
-                        chatmessage={room.messages.map(message => {
-                          return <li>{message.message}</li>;
+                        id={room.id}
+                        chatmessage={room.messages.map((message, index) => {
+                          return <li key={index}>{message.message}</li>;
                         })}
                       />
                     }

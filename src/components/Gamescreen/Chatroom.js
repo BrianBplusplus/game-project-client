@@ -9,8 +9,12 @@ export default class Chatroom extends Component {
   onSubmit = async event => {
     event.preventDefault();
     const url = `https://game-project-alex-brian-server.herokuapp.com/message`;
+    //const url = `http://localhost:4000/message`;
 
-    await axios.post(url, { message: this.state.message });
+    await axios.post(url, {
+      message: this.state.message,
+      roomId: this.props.id
+    });
   };
 
   onChange = event => {

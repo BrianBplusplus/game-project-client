@@ -10,7 +10,6 @@ import LobbyContainer from "./components/Lobby/LobbyContainer";
 import P5Container from "./components/p5/P5Container";
 import GameScreenContainer from "./components/Gamescreen/GameScreenContainer";
 
-
 class App extends React.Component {
   stream = new EventSource(
     //"http://localhost:4000/stream"
