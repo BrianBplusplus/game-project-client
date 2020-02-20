@@ -26,7 +26,7 @@ export class GameScreenContainer extends Component {
     let canvas;
 
     p.setup = () => {
-      canvas = p.createCanvas(700, 400);
+      canvas = p.createCanvas(700, 500);
       p.background(255);
     };
 
@@ -54,7 +54,8 @@ export class GameScreenContainer extends Component {
     const mouseData = [];
 
     p.mouseReleased = async () => {
-      const request = await axios.post(
+
+    const request = await axios.post(
         `${baseUrl}/drawing`,
         {
           data: mouseData,
@@ -64,6 +65,7 @@ export class GameScreenContainer extends Component {
         { headers: { Authorization: `Bearer ${this.props.token}` } }
       );
     };
+
     const newDrawing = (data, color) => {
       p.stroke(color[0], color[1], color[2]);
       p.strokeWeight(8);
@@ -73,43 +75,51 @@ export class GameScreenContainer extends Component {
   };
 
   render() {
+    const room =
+      this.props.rooms &&
+      this.props.rooms.find(room => room.id === this.state.roomId);
+
+    const displayPlayers = players => {
+      return (
+        players &&
+        players.map((player, index) => {
+          return (
+            <div className="userList" key={index}>
+              {player.userName}
+            </div>
+          );
+        })
+      );
+    };
+
     return (
       <div>
-        {this.props.rooms &&
-          this.props.rooms.map(room => {
-            if (room.id === this.state.roomId) {
+        <h2>{room.name}</h2>
+        <div className="players">
+          <h3>Players:</h3>
+          {displayPlayers(room.users)}
+        </div>
+
+        <div className="gamescreencontainer">
+          <Chatroom
+            id={room.id}
+            chatmessage={room.messages.map((message, index) => {
               return (
-                <div key={room.id}>
-                  <h2>{room.name}</h2>
-
-                  <ul>
-                    Players:
-                    {room.users &&
-                      room.users.map((user, index) => {
-                        return <li key={index}>{user.userName}</li>;
-                      })}
-                  </ul>
-
-                  <div className="gamescreencontainer">
-                    {
-                      <Chatroom
-                        id={room.id}
-                        chatmessage={room.messages.map((message, index) => {
-                          return <li key={index}>{message.message}</li>;
-                        })}
-                      />
-                    }
-                    <P5Wrapper
-                      sketch={this.sketch}
-                      roomInfo={this.props.rooms.find(
-                        room => room.id === this.state.roomId
-                      )}
-                    />
-                  </div>
+                <div className="message" key={index}>
+                  {message.message}
                 </div>
               );
-            }
-          })}
+            })}
+          />
+          <div className="canvas">
+            <P5Wrapper
+              sketch={this.sketch}
+              roomInfo={this.props.rooms.find(
+                room => room.id === this.state.roomId
+              )}
+            />
+          </div>
+        </div>
 
         <Bottombar />
       </div>
