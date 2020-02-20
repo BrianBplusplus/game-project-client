@@ -33,7 +33,10 @@ export class GameScreenContainer extends Component {
       const allLines = props.roomInfo.drawingLines;
 
       if (allLines && allLines.length) {
-        allLines.map(line => line.data.map(valuePair => newDrawing(valuePair)));
+        allLines.map(line => {
+          let lineColor = line.color;
+          return line.data.map(valuePair => newDrawing(valuePair, lineColor));
+        });
       }
     };
 
@@ -51,19 +54,19 @@ export class GameScreenContainer extends Component {
 
     p.mouseReleased = async () => {
       const url = `https://game-project-alex-brian-server.herokuapp.com/drawing`;
-      await axios.post(
+      // const url = "http://localhost:4000/drawing";
+      const request = await axios.post(
         url,
         {
           data: mouseData,
           roomId: this.state.roomId,
-          color: this.color
+          color: this.state.color
         },
         { headers: { Authorization: `Bearer ${this.props.token}` } }
       );
     };
-
-    const newDrawing = data => {
-      p.stroke(51, 255, 177);
+    const newDrawing = (data, color) => {
+      p.stroke(color[0], color[1], color[2]);
       p.strokeWeight(8);
       p.smooth();
       p.line(data[0], data[1], data[2], data[3]);
@@ -117,7 +120,7 @@ export class GameScreenContainer extends Component {
 
 const mapStateToProps = state => ({
   rooms: state.room,
-  token: state.user.token
+  token: state.user.token.token
 });
 
 const mapDispatchToProps = {};
