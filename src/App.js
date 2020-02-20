@@ -10,10 +10,9 @@ import LobbyContainer from "./components/Lobby/LobbyContainer";
 import GameScreenContainer from "./components/Gamescreen/GameScreenContainer";
 
 export const baseUrl = "https://game-project-alex-brian-server.herokuapp.com";
-// const baseURL = "http://localhost:4000";
+// export const baseUrl = "http://localhost:4000";
 
 class App extends React.Component {
-
   stream = new EventSource(`${baseUrl}/stream`);
 
   protectedRoutes = (Component, routerProps) => {
@@ -38,7 +37,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>A FAKE ARTIST GOES TO NEW YORK</h1>
+        <h1>FAKE ARTIST</h1>
         <Route path="/signup" exact component={SignupScreenContainer} />
         <Route
           path="/lobby"
