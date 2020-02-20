@@ -21,7 +21,7 @@ export default class CreateRoomForm extends Component {
   render() {
     return (
       <form onSubmit={event => this.onSubmit(event)}>
-        <p>Create Room</p>
+        <p>Create a Room...</p>
         <input
           type="text"
           name="room"
