@@ -5,11 +5,16 @@ import { Link } from "react-router-dom";
 import Room from "./Room";
 import CreateRoomForm from "./CreateRoomForm";
 import { joinRoom } from "../../store/user/action";
+import { deleteRoom } from "../../store/room/action";
 
 export class LobbyContainer extends Component {
   joinClick = roomId => {
     this.props.joinRoom(roomId);
     this.props.history.push(`/gamescreen/${roomId}`);
+  };
+
+  deleteClick = roomId => {
+    this.props.deleteRoom(roomId);
   };
 
   displayRooms = rooms => {
@@ -21,6 +26,7 @@ export class LobbyContainer extends Component {
           name={room.name}
           users={room.users.length}
           joinClick={this.joinClick}
+          deleteClick={this.deleteClick}
         />
       );
     });
@@ -54,6 +60,6 @@ const mapStateToProps = state => ({
   rooms: state.room
 });
 
-const mapDispatchToProps = { joinRoom };
+const mapDispatchToProps = { joinRoom, deleteRoom };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LobbyContainer);
