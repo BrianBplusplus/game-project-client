@@ -9,8 +9,8 @@ import SignupScreenContainer from "./components/Signup/SignupScreenContainer";
 import LobbyContainer from "./components/Lobby/LobbyContainer";
 import GameScreenContainer from "./components/Gamescreen/GameScreenContainer";
 
-export const baseUrl = "https://game-project-alex-brian-server.herokuapp.com";
-// export const baseUrl = "http://localhost:4000";
+// export const baseUrl = "https://game-project-alex-brian-server.herokuapp.com";
+export const baseUrl = "http://localhost:4000";
 
 class App extends React.Component {
   stream = new EventSource(`${baseUrl}/stream`);
