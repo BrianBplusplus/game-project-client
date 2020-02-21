@@ -1,3 +1,4 @@
+import { DELETE_ROOM } from "./action";
 const ALL_ROOMS = "ALL_ROOMS";
 const ONE_ROOM = "ONE_ROOM";
 const JOIN_ROOM = "JOIN_ROOM";
@@ -16,16 +17,12 @@ export default function(state = initialState, action = {}) {
 
     case JOIN_ROOM: {
       return state.map(room => {
-        // console.log("room.id", room.id);
-        // console.log("action.payload.id", action.payload.id);
-        //return room.id === action.payload.id ? action.payload : room;
-
-        if (room.id === action.payload.id) {
-          return action.payload;
-        } else {
-          return room;
-        }
+        return room.id === action.payload.id ? action.payload : room;
       });
+    }
+
+    case DELETE_ROOM: {
+      return action.payload;
     }
 
     default:

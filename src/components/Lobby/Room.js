@@ -8,6 +8,13 @@ export default function Room(props) {
       <button className="joinRoom" onClick={() => props.joinClick(props.id)}>
         JOIN
       </button>
+
+      <button
+        className="deleteRoom"
+        onClick={() => props.deleteClick(props.id)}
+      >
+        DELETE
+      </button>
     </div>
   );
 }
